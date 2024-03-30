@@ -1,0 +1,275 @@
+
+
+Section 3.1 
+
+	fact_idea_prompt:
+
+		User idea is: [idea].
+		User first provides the column names of [data] and first row as the sample of data format.
+		Data stats is also provided for each column.
+		Your task is to generate the idea about which facts would be interesting to user, generate facts.
+		Some suggestions for fact types are provided below in this format:
+		(TYPE): (DEFINITION): (REQUIREMENT): (OUTPUT_FORMAT).
+		We use $ for variable returned from you.
+		Rules:
+			1. Can provide multiple different facts that have same type, (e.g., can have 3 TOP and 2 ASSOCIATION facts).
+			2. Some fact types may not be applied for given dataset if REQUIREMENT is not met.
+			3. Column order in $column_names: categorical > time > numerical.
+			Fact types:
+			1. TOP: highlight top n values from a column: a column with qualitative data for label, a column with numerical data for finding the top: ['TOP', $number of value, [$column_names], $title]
+			2. DISTRIBUTION: amount of value shared across the selected data attribute: 1 column with numerical column data.: ['DISTRIBUTION', [$column_name(s)], $title]
+			3. SUM_AVERAGE_COUNT: sum, average, count based on a column value: a column with numerical data for the proportion calculation.: ['SUM_AVERAGE_COUNT', [$column_name(s)], $title]
+			4. OUTLIER: extreme or unexpected value in one column: has at least 1 column with numeric column data.: ['OUTLIER', $column_names, $fact]
+			5. ASSOCIATION: compare and tell relationship between two column: 2 numerical columns in the data.: ['ASSOCIATION',[$column_name(s)], $title]
+			6. PROPORTION: comparing each row in a column to a whole: a column with qualitative data for label, a column with numerical data for the proportion calculation.: ['PROPORTION', [$column_names], $title]
+			Output them as a list of facts, for example: [['TOP', 5, ['country_name', 'corruption_index'],'top 5 countries with highest corruption index'],...]
+		
+		Example 1: 
+			Input:
+				User Idea: Explore the effectiveness of marketing campaigns.
+				Data: [["campaign_name", "region", "impressions", "clicks", "conversions"], ["Summer Sale", "North America", 10000, 500, 50], ...]
+				Stats: {"campaign_name": "categorical", "region": "categorical", "impressions": "numerical", "clicks": "numerical", "conversions": "numerical"}
+			Output:
+				[
+					['TOP', 3, ['campaign_name', 'conversions'], 'Top 3 campaigns with highest conversions'],
+					['DISTRIBUTION', ['region'], 'Distribution of conversions across regions'],
+					['SUM_AVERAGE_COUNT', ['clicks'], 'Average number of clicks across all campaigns'],
+					['OUTLIER', ['impressions'], 'Campaigns with exceptionally high or low impressions'],
+					['ASSOCIATION', ['clicks', 'conversions'], 'Relationship between clicks and conversions']
+				]
+
+		Example 2:
+			Input:
+				User idea: "Identify trends in employee performance."
+				Data: [["employee_id", "department", "hours_worked", "tasks_completed"], ["E001", "Sales", 40, 30], ...]
+				Stats: {"employee_id": "categorical", "department": "categorical", "hours_worked": "numerical", "tasks_completed": "numerical"}
+			Output:
+				[
+				  ['TOP', 5, ['department', 'tasks_completed'], 'Top 5 departments with highest tasks completed'],
+				  ['SUM_AVERAGE_COUNT', ['hours_worked'], 'Average hours worked by all employees'],
+				  ['OUTLIER', ['tasks_completed'], 'Employees with exceptionally high or low task completion rates'],
+				  ['ASSOCIATION', ['hours_worked', 'tasks_completed'], 'Analysis of work hours and task completion rate'],
+				  ['PROPORTION', ['department', 'tasks_completed'], 'Proportion of tasks completed by each department']
+			    ]
+		DATA: [data]
+		STATS: [data_stats]
+
+
+
+Section 3.2 
+
+	suggest_sql:
+
+		Purpose: Provide suggestion one the key decision points for generating the SQL from the command on the dataset.
+
+		Parameters:
+			- n: The number of rows to be selected from the data. [n]
+			- data: The random n rows of dataset from which data is to be selected, structured as a table. [data]
+			- command: The specific request or command that dictates the nature of the SQL query to be generated (e.g., selecting top values, distribution, outliers). [command]
+			- table: the SQL command for table creation. [table]
+
+
+		Output: Returns a list of considerations and suggestions to better output the correct SQL query from the command.
+
+		Example 1:
+		 	Command: "Generate a query for the top 3 highest value in the Sale columns."
+			Result: ["Consider the value conversion for Sale value", "Consider the number of Sales columns that the dataset has"]
+
+		Example 2:
+			Command: "Generate the chart to show cases the sales value for different countries in Europe."
+			Result: ["Consider the country name variations (e.g., US and United State)", "Consider the right data conversion for Sales value."]
+
+
+	get_sql:
+
+		Purpose: Generates an SQL query for extracting specific data from a database table based on user-defined criteria, ensuring compatibility with data plotting requirements.
+
+		Parameters:
+			- n: The number of rows to be selected from the data. [n]
+			- data: The dataset from which data is to be selected, structured as a table. [data]
+			- command: The specific request or command that dictates the nature of the SQL query to be generated (e.g., selecting top values, distribution, outliers). [command]
+			- table_name: The name of the table from which data is to be extracted. [table_name]
+			- suggestions: The list of suggestions to generate the query. [suggestions]
+			- table: the SQL command for table creation. [table]
+
+		Rules:
+			1. Only output the SQL query, with no additional text or characters.
+			2. Avoid the use of any special characters in the SQL query.
+			3. The returned data must be ordered from VARCHAR to DATETIME to DECIMAL types.
+			4. Limit the selection to a maximum of three columns.
+			5. Data processing must align with the request, ensuring suitability for plot graphs.
+			6. Ensure the SQL query is error-free and strictly relevant to the request.
+			7. Exclude irrelevant columns from the selection.
+			8. Implement specific mappings for requests (e.g., TOP, DISTRIBUTION, OUTLIER, SUM_AVERAGE_COUNT, ASSOCIATION, PROPORTION), following defined strategies for data aggregation and analysis.
+
+		Output: The function returns an SQL query string tailored to the user's request, adhering to the specified rules and format.
+
+		Example Command 1: "Generate a query for the top 3 most frequent values in the 'category' column."
+		Resulting SQL Query 1: "SELECT category, COUNT(*) AS frequency FROM table_name GROUP BY category ORDER BY frequency DESC LIMIT 3;"
+
+		Example Command 2: "Show the distribution of sales across different regions, grouped into 5 equal intervals."
+		Resulting SQL Query 2: "WITH sales_intervals AS (SELECT region, sales, NTILE(5) OVER (ORDER BY sales) AS sales_interval FROM table_name) SELECT sales_interval, COUNT(*) AS number_of_sales, MIN(sales) AS min_sales, MAX(sales) AS max_sales FROM sales_intervals GROUP BY sales_interval ORDER BY sales_interval;"
+
+	validate_sql:
+
+		Purpose: Validate the provided SQL query on the dataset from the command and provide fixes if applicable.
+		Parameters:
+			- SQL: the query to get the required data. [sql]
+			- data: the data sampled from the SQL on the datata [data]
+			- user request: the command that the data answers. [command]
+			- table: the SQL command for table creation. [table]
+
+		Steps:
+			1. Validate the SQL is error free.
+			2. Validate if the collected data matches user request.
+			3. Make sure the data only contain what is needed.
+
+		Response: The SQL command after corrected.
+
+		Example 1:
+			User Request: "Show the top 3 employees with the highest sales in 2020."
+
+			Provided SQL Query: SELECT employee_id, total_sales FROM sales_data WHERE year = 2020 ORDER BY total_sales DESC
+
+			Data Sampled from SQL on the Dataset:
+			[{"employee_id": "E001", "total_sales": 50000}, {"employee_id": "E002", "total_sales": 45000}, {"employee_id": "E003", "total_sales": 40000}, {"employee_id": "E004", "total_sales": 35000}]
+
+			SQL Command for Table Creation: CREATE TABLE sales_data (employee_id VARCHAR(10), year INT, total_sales INT);
+
+			Response: SELECT employee_id, total_sales FROM sales_data WHERE year = 2020 ORDER BY total_sales DESC LIMIT 3
+
+
+Section 3.3 
+	generate_description_prompt**
+
+		From the given data and title, write a SHORT, CONCISE sentence (LESS THAN 20 WORDS).
+		Do not talk about numbers in the data, use your knowledge to provide external interesting facts like historical events or geographical if relevant to this data.
+		If no insights, return empty string "".
+		IDEA: [idea].
+		DATA: [data]
+
+		Example 1:
+			Command: "IDEA: Annual Rainfall Trends. DATA: [['Year', 'Location', 'Rainfall (mm)'], ['2020', 'California', 300], ['2021', 'California', 320]]."
+			Output: "California's climate is influenced by Pacific Ocean currents."
+		Example 2:
+			Command: "IDEA: Coffee Consumption by Country. DATA: [['Country', 'Year', 'Coffee Consumed (kg per capita)'], ['Finland', '2020', 12], ['Brazil', '2020', 6]]."
+			Output: "Finland has the highest coffee consumption per capita globally."
+		Example 3:
+			Command: "IDEA: Evolution of Computer Processing Power. DATA: [['Year', 'Processor', 'Speed (GHz)'], ['1971', 'Intel 4004', 0.00074], ['2020', 'AMD Ryzen 9', 4.8]]."
+			Output: "Moore's Law predicts the exponential growth of computing power."
+		Example 4:
+			Command: "IDEA: Global Smartphone Sales. DATA: [['Year', 'Brand', 'Units Sold'], ['2019', 'Brand A', 200000], ['2020', 'Brand B', 210000]]."
+			Output: "Smartphone sales reflect technological adoption trends worldwide."
+		Example 5:
+			Command: "IDEA: Historical Landmark Visitors. DATA: [['Landmark', 'Year', 'Visitors'], ['Great Wall of China', '2019', 1000000], ['Taj Mahal', '2019', 800000]]."
+			Output: "The Great Wall is one of the most recognizable symbols of China."
+
+Section 3.4 
+
+	generate_story_from_fact
+
+		Given: LIST_OF_FACTS (array of facts, each fact format: fact contains ['type of facts', 'relevant columns',' fact idea']),
+		DATA_STRUCTURE (structure of data [[...column names],[...first row data examples], [...second row onwards (optional)].
+		IDEA: the idea of fact sheet provided by user.
+		STATS: information about data columns.
+		Generated text should be short and concise.
+		Generate a good flow for a fact sheet, some ideas for logic behind facts sheet flow:
+		similarity, temporal, contrast, cause-effect, elaboration, generalization.
+		Output in JSON dict format:
+		{
+			"title": string,
+			"sections": [
+				{"title": Introduction, "content (based on the data stats)": "Concise present about the data stats. "},
+				{"title": string, "content": string, "facts": [index of fact in list of facts...]},
+				{other sections}
+			]
+		}
+		Example 1:
+
+			LIST_OF_FACTS: [["TOP", ["country", "happiness_score"], "Top 5 happiest countries"], ["DISTRIBUTION", ["income_group"], "Income group distribution"]]
+			DATA_STRUCTURE: [["country", "happiness_score", "income_group"], ["Finland", 7.8, "High"], ["Denmark", 7.6, "High"], ...]
+			IDEA: "Global Happiness Report"
+			STATS: Information about the happiness score and income groups of countries.
+			
+			Output: 
+
+				{
+				  "title": "Global Happiness Report",
+				  "sections": [
+				    {
+				      "title": "Introduction",
+				      "content": "This report explores the happiness scores and income groups of countries worldwide."
+				    },
+				    {
+				      "title": "Top 5 Happiest Countries",
+				      "content": "Highlighting countries with the highest happiness scores.",
+				      "facts": [0]
+				    },
+				    {
+				      "title": "Income Group Distribution",
+				      "content": "Examining the distribution of countries across different income groups.",
+				      "facts": [1]
+				    }
+				  ]
+				}
+		
+		LIST_OF_FACTS: [facts]
+		DATA_STRUCTURE: [data_peak].
+		IDEA: [idea]
+
+Section 3.5
+
+	insert_graph_to_story
+
+		Given: EXISTING_STORY: previously generated story, has the same format as output and has many sections,
+		NEW_GRAPH: information about the new graph to insert.
+		DATA_STRUCTURE (structure of data [[...column names],[...first row data examples], [...second row onwards (optional)].
+		Find the best place to insert the new graph as an index in "facts": [index of fact in list of facts...]] (it has the index of [fact_index]), keep everything else the same.
+		Output in JSON dict format:
+		{
+			"title": string,
+			"sections": [
+				{"title": Introduction, "content": string},
+				{"title": string, "content": string, "facts": [index of fact in list of facts...]},
+				{other sections}
+			]
+		}
+
+		Example 1:
+
+			EXISTING_STORY:
+			{
+			  "title": "Global Happiness Report",
+			  "sections": [
+			    {
+			      "title": "Introduction",
+			      "content": "This report explores the happiness scores and income groups of countries worldwide."
+			    },
+			    {
+			      "title": "Top 5 Happiest Countries",
+			      "content": "Highlighting countries with the highest happiness scores.",
+			      "facts": [0]
+			    }
+			  ]
+			}
+			NEW_GRAPH: {"type": "Bar", "data": {"x": ["Finland", "Denmark", "Norway"], "y": [7.8, 7.6, 7.4]}, "title": "Happiness Score Visualization"}
+			DATA_STRUCTURE: [["country", "happiness_score", "income_group"], ["Finland", 7.8, "High"], ["Denmark", 7.6, "High"], ...]
+
+			Output:
+			{
+				"title": "Global Happiness Report",
+				"sections": [
+					{
+					  "title": "Introduction",
+					  "content": "This report explores the happiness scores and income groups of countries worldwide."
+					},
+					{
+					  "title": "Top 5 Happiest Countries",
+					  "content": "Highlighting countries with the highest happiness scores.",
+					  "facts": [0, "new_graph"]
+					}
+				]
+			}
+			
+		EXISTING_STORY: [existing_story]
+		NEW_GRAPH: [new_graph].
