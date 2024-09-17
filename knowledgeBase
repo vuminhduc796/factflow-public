@@ -1,0 +1,1171 @@
+[{
+    "CostOfLiving": {
+        "dataset_representation": {
+            "SQL_Table_Creation": {
+                "command": "CREATE TABLE CostOfLiving (Country VARCHAR(255), Cost_Index FLOAT, Monthly_Income BIGINT, Purchasing_Power_Index FLOAT)"
+            },
+            "Column_Statistics": {
+                "Country": {
+                    "data_type": "object",
+                    "count": 107,
+                    "unique": 107,
+                    "top": "Albania",
+                    "freq": 1
+                },
+                "Cost_Index": {
+                    "data_type": "float64",
+                    "count": 107,
+                    "mean": 62.555140186915885,
+                    "std": 33.747716159330366,
+                    "min": 22.8,
+                    "25%": 36.400000000000006,
+                    "50%": 48.9,
+                    "75%": 84.55000000000001,
+                    "max": 157.6
+                },
+                "Monthly_Income": {
+                    "data_type": "int64",
+                    "count": 107,
+                    "mean": 1826.5327102803737,
+                    "std": 2100.2750328332204,
+                    "min": 87.0,
+                    "25%": 295.0,
+                    "50%": 782.0,
+                    "75%": 3130.0,
+                    "max": 9712.0
+                },
+                "Purchasing_Power_Index": {
+                    "data_type": "float64",
+                    "count": 107,
+                    "mean": 38.15046728971963,
+                    "std": 30.588024459674052,
+                    "min": 3.4,
+                    "25%": 14.05,
+                    "50%": 25.8,
+                    "75%": 59.099999999999994,
+                    "max": 121.1
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "country": "Ghana",
+                    "cost_index": 37.3,
+                    "monthly_income": 197,
+                    "purchasing_power_index": 9.0
+                },
+                {
+                    "country": "Ireland",
+                    "cost_index": 119.8,
+                    "monthly_income": 6210,
+                    "purchasing_power_index": 88.3
+                },
+                {
+                    "country": "Iceland",
+                    "cost_index": 128.0,
+                    "monthly_income": 5368,
+                    "purchasing_power_index": 71.5
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["country", "monthly_income"], "What is the monthly income in Switzerland?"], 
+            ["PROPORTION", ["country", "cost_index"], "What proportion of countries have a cost index above 100?"],
+            ["PROPORTION", ["country", "purchasing_power_index"], "What proportion of countries have a purchasing power index below 40?"],
+            ["DIFFERENCE", ["monthly_income", "cost_index"], "What is the difference in monthly income between Bermuda and Switzerland?"],
+            ["DISTRIBUTION", ["cost_index"], "What is the overall distribution of the cost index across all countries?"],
+            ["DISTRIBUTION", ["purchasing_power_index"], "What is the overall distribution of the purchasing power index across all countries?"],
+            ["TREND", ["monthly_income"], "What is the trend in monthly income from low to high income countries?"],
+            ["RANK", ["country", "cost_index"], "Rank the top 5 countries with the highest cost index."],
+            ["RANK", ["country", "monthly_income"], "Rank the countries by highest to lowest monthly income."],
+            ["AGGREGATION", ["monthly_income"], "What is the average, sum, and count of monthly income across all countries?"],
+            ["AGGREGATION", ["cost_index"], "What is the average, sum, and count of cost index across all countries?"],
+            ["ASSOCIATION", ["cost_index", "monthly_income"], "What is the correlation between cost index and monthly income?"],
+            ["ASSOCIATION", ["cost_index", "purchasing_power_index"], "What is the correlation between cost index and purchasing power index?"],
+            ["EXTREME", ["country", "monthly_income"], "What is the country with the highest monthly income?"],
+            ["EXTREME", ["country", "purchasing_power_index"], "Which country has the lowest purchasing power index?"],
+            ["CATEGORIZATION", ["country", "cost_index"], "Which countries have a cost index higher than 120?"],
+            ["CATEGORIZATION", ["country", "purchasing_power_index"], "Which countries have a purchasing power index lower than 20?"],
+            ["OUTLIER", ["monthly_income"], "Identify the countries with exceptionally high monthly incomes compared to the global average."]
+        ]
+    }
+},
+{
+    "SummerOlympics": {
+        "dataset_representation": {
+            "SQL_Table_Creation": {
+                "command": "CREATE TABLE SummerOlympics (Year INT, City VARCHAR(255), Sport VARCHAR(255), Discipline VARCHAR(255), Athlete VARCHAR(255), Country VARCHAR(3), Gender VARCHAR(6), Event VARCHAR(255), Medal VARCHAR(6))"
+            },
+            "Column_Statistics": {
+                "Year": {
+                    "data_type": "int64",
+                    "count": 31165,
+                    "unique": 27,
+                    "top": 2008,
+                    "freq": 2042
+                },
+                "City": {
+                    "data_type": "object",
+                    "count": 31165,
+                    "unique": 22,
+                    "top": "London",
+                    "freq": 3567
+                },
+                "Sport": {
+                    "data_type": "object",
+                    "count": 31165,
+                    "unique": 43,
+                    "top": "Aquatics",
+                    "freq": 4170
+                },
+                "Discipline": {
+                    "data_type": "object",
+                    "count": 31165,
+                    "unique": 51,
+                    "top": "Swimming",
+                    "freq": 4170
+                },
+                "Athlete": {
+                    "data_type": "object",
+                    "count": 31165,
+                    "unique": 22762,
+                    "top": "PHELPS, Michael",
+                    "freq": 22
+                },
+                "Country": {
+                    "data_type": "object",
+                    "count": 31161,
+                    "unique": 147,
+                    "top": "USA",
+                    "freq": 4585
+                },
+                "Gender": {
+                    "data_type": "object",
+                    "count": 31165,
+                    "unique": 2,
+                    "top": "Men",
+                    "freq": 22780
+                },
+                "Event": {
+                    "data_type": "object",
+                    "count": 31165,
+                    "unique": 765,
+                    "top": "100M Freestyle",
+                    "freq": 173
+                },
+                "Medal": {
+                    "data_type": "object",
+                    "count": 31165,
+                    "unique": 3,
+                    "top": "Gold",
+                    "freq": 10486
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "Year": 1992,
+                    "City": "Barcelona",
+                    "Athlete": "TEWS, Andreas",
+                    "Country": "GER",
+                    "Gender": "Men",
+                    "Event": "Boxing - Flyweight",
+                    "Medal": "Gold"
+                },
+                {
+                    "Year": 1972,
+                    "City": "Munich",
+                    "Athlete": "AUER, Gerhard",
+                    "Country": "FRG",
+                    "Gender": "Men",
+                    "Event": "Rowing - Coxed Pairs",
+                    "Medal": "Gold"
+                },
+                {
+                    "Year": 1996,
+                    "City": "Atlanta",
+                    "Athlete": "TRUSH, Dmitriy",
+                    "Country": "RUS",
+                    "Gender": "Men",
+                    "Event": "Gymnastics - Rings",
+                    "Medal": "Gold"
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["Athlete", "Medal"], "What medal did HAJOS, Alfred win in 1896?"],
+            ["PROPORTION", ["Country", "Medal"], "What proportion of medals did Greece win in the 1896 games?"],
+            ["PROPORTION", ["Gender", "Medal"], "What proportion of gold medals were won by men compared to women?"],
+            ["DIFFERENCE", ["Medal", "Year"], "What is the difference in medal counts between 1896 and 2000?"],
+            ["DIFFERENCE", ["Gender"], "What is the difference in the number of male and female athletes?"],
+            ["DISTRIBUTION", ["Medal"], "What is the distribution of medals (Gold, Silver, Bronze) in the dataset?"],
+            ["DISTRIBUTION", ["Gender"], "What is the distribution of male and female athletes in the dataset?"],
+            ["TREND", ["Year", "Medal"], "What is the trend in gold medals awarded over the years?"],
+            ["TREND", ["Year", "Gender"], "What is the trend of female athlete participation over the years?"],
+            ["RANK", ["Athlete", "Medal"], "Rank the top 5 athletes with the most gold medals."],
+            ["RANK", ["Country", "Medal"], "Which countries have won the most gold medals overall?"],
+            ["RANK", ["Country", "Medal"], "Which country has dominated swimming events in terms of gold medals?"],
+            ["AGGREGATION", ["Medal"], "What is the total number of medals awarded in the dataset?"],
+            ["AGGREGATION", ["Gender"], "What is the total count of male and female athletes?"],
+            ["ASSOCIATION", ["Sport", "Medal"], "What is the correlation between sports and the number of medals won?"],
+            ["ASSOCIATION", ["Gender", "Medal"], "What is the relationship between gender and the number of medals won?"],
+            ["EXTREME", ["Athlete", "Medal"], "Which athlete won the most medals?"],
+            ["EXTREME", ["Country", "Medal"], "Which country won the most medals?"],
+            ["CATEGORIZATION", ["Country", "Medal"], "Which countries have won more than 10 gold medals?"],
+            ["CATEGORIZATION", ["Gender"], "Which years had equal male and female athlete participation?"],
+            ["OUTLIER", ["Athlete"], "Identify athletes with unexpected medal counts compared to the average."],
+            ["OUTLIER", ["Country"], "Identify countries that have won an unexpectedly high or low number of medals."]
+        ]
+    }
+},
+
+{
+    "CorruptionDataset": {
+        "dataset_representation": {
+            "SQL_Table_Creation": {
+                "command": "CREATE TABLE CorruptionDataset (Country VARCHAR(255), Annual_Income BIGINT, Corruption_Index INT)"
+            },
+            "Column_Statistics": {
+                "Country": {
+                    "data_type": "object",
+                    "count": 110,
+                    "unique": 110,
+                    "top": "Afghanistan",
+                    "freq": 1
+                },
+                "Annual_Income": {
+                    "data_type": "int64",
+                    "count": 110,
+                    "mean": 17195.73,
+                    "std": 23741.15,
+                    "min": 240.0,
+                    "25%": 1470.0,
+                    "50%": 4130.0,
+                    "75%": 25410.0,
+                    "max": 90360.0
+                },
+                "Corruption_Index": {
+                    "data_type": "int64",
+                    "count": 110,
+                    "mean": 59.2,
+                    "std": 22.17,
+                    "min": 12.0,
+                    "25%": 41.75,
+                    "50%": 69.0,
+                    "75%": 75.0,
+                    "max": 89.0
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "country": "Madagascar",
+                    "annual_income": 500,
+                    "corruption_index": 74
+                },
+                {
+                    "country": "United Kingdom",
+                    "annual_income": 45380,
+                    "corruption_index": 22
+                },
+                {
+                    "country": "Singapore",
+                    "annual_income": 64010,
+                    "corruption_index": 15
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["country", "corruption_index"], "What is the corruption index of Denmark?"],
+            ["PROPORTION", ["country", "corruption_index"], "What proportion of countries have a corruption index below 20?"],
+            ["DIFFERENCE", ["annual_income", "corruption_index"], "What is the difference in annual income between countries with low and high corruption indexes?"],
+            ["DISTRIBUTION", ["corruption_index"], "What is the distribution of corruption index across countries?"],
+            ["TREND", ["annual_income", "corruption_index"], "Is there a trend of decreasing corruption index with higher annual income?"],
+            ["RANK", ["country", "corruption_index"], "Which countries have the lowest corruption index?"],
+            ["AGGREGATION", ["annual_income"], "What is the total, average, and median annual income across all countries?"],
+            ["ASSOCIATION", ["annual_income", "corruption_index"], "Is there a relationship between annual income and corruption index?"],
+            ["EXTREME", ["country", "corruption_index"], "Which country has the highest corruption index?"],
+            ["CATEGORIZATION", ["corruption_index"], "Which countries have a corruption index greater than 50?"],
+            ["OUTLIER", ["annual_income"], "Identify countries with unusually high or low annual income compared to others."]
+        ]
+    }
+},
+{
+    "VGSalesDataset": {
+        "dataset_representation": {
+            "SQL_Table_Creation": {
+                "command": "CREATE TABLE VGSalesDataset (Rank INT, Name VARCHAR(255), Platform VARCHAR(50), Year FLOAT, Genre VARCHAR(50), Publisher VARCHAR(255), NA_Sales FLOAT, EU_Sales FLOAT, JP_Sales FLOAT, Other_Sales FLOAT, Global_Sales FLOAT)"
+            },
+            "Column_Statistics": {
+                "Rank": {
+                    "data_type": "int64",
+                    "count": 16598,
+                    "unique": 16598,
+                    "top": 1,
+                    "freq": 1
+                },
+                "Name": {
+                    "data_type": "object",
+                    "count": 16598,
+                    "unique": 11493,
+                    "top": "Need for Speed: Most Wanted",
+                    "freq": 12
+                },
+                "Platform": {
+                    "data_type": "object",
+                    "count": 16598,
+                    "unique": 31,
+                    "top": "DS",
+                    "freq": 2163
+                },
+                "Year": {
+                    "data_type": "float64",
+                    "count": 16327,
+                    "unique": 39,
+                    "top": 2009.0,
+                    "freq": 1431
+                },
+                "Genre": {
+                    "data_type": "object",
+                    "count": 16598,
+                    "unique": 12,
+                    "top": "Action",
+                    "freq": 3316
+                },
+                "Publisher": {
+                    "data_type": "object",
+                    "count": 16540,
+                    "unique": 578,
+                    "top": "Electronic Arts",
+                    "freq": 1351
+                },
+                "Global_Sales": {
+                    "data_type": "float64",
+                    "count": 16598,
+                    "mean": 0.54,
+                    "std": 1.56,
+                    "min": 0.01,
+                    "25%": 0.06,
+                    "50%": 0.17,
+                    "75%": 0.47,
+                    "max": 82.74
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "Name": "F1 2012",
+                    "Platform": "PC",
+                    "Year": 2012.0,
+                    "Genre": "Racing",
+                    "Publisher": "Codemasters",
+                    "Global_Sales": 0.15
+                },
+                {
+                    "Name": "Transformers: The Game (XBox 360, PS2, PS3, Wii & PC Versions)",
+                    "Platform": "PS3",
+                    "Year": 2007.0,
+                    "Genre": "Action",
+                    "Publisher": "Activision",
+                    "Global_Sales": 0.4
+                },
+                {
+                    "Name": "Commandos 3: Destination Berlin",
+                    "Platform": "PC",
+                    "Year": 2003.0,
+                    "Genre": "Strategy",
+                    "Publisher": "Eidos Interactive",
+                    "Global_Sales": 0.02
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["Name", "Global_Sales"], "What are the global sales for Wii Sports?"],
+            ["VALUE", ["Publisher", "Global_Sales"], "What are the total global sales for games published by Nintendo?"],
+            ["PROPORTION", ["Platform", "Global_Sales"], "What proportion of global sales are from games on the Wii platform?"],
+            ["PROPORTION", ["Genre", "Global_Sales"], "What proportion of global sales comes from the Sports genre?"],
+            ["DIFFERENCE", ["Global_Sales", "Year"], "What is the difference in global sales between games released in 2000 and 2010?"],
+            ["DIFFERENCE", ["NA_Sales", "EU_Sales"], "What is the difference in sales between North America and Europe for top 10 games?"],
+            ["DISTRIBUTION", ["Global_Sales"], "What is the distribution of global sales across all video games?"],
+            ["DISTRIBUTION", ["NA_Sales", "JP_Sales"], "How are sales distributed between North America and Japan?"],
+            ["TREND", ["Year", "Global_Sales"], "What is the trend of global sales over the years?"],
+            ["TREND", ["Platform", "Global_Sales"], "What is the sales trend for games released on Nintendo platforms over the years?"],
+            ["RANK", ["Name", "Global_Sales"], "Rank the top 5 video games with the highest global sales."],
+            ["RANK", ["Publisher", "Global_Sales"], "Which publishers have the most games in the top 10 for global sales?"],
+            ["AGGREGATION", ["Global_Sales"], "What is the total, average, and median global sales across all video games?"],
+            ["AGGREGATION", ["Platform", "Global_Sales"], "What is the total global sales for each platform?"],
+            ["ASSOCIATION", ["Platform", "Global_Sales"], "Is there a relationship between platform and global sales?"],
+            ["ASSOCIATION", ["Genre", "Global_Sales"], "Is there a relationship between game genre and global sales?"],
+            ["EXTREME", ["Name", "Global_Sales"], "Which video game has the highest global sales?"],
+            ["EXTREME", ["Publisher", "Global_Sales"], "Which publisher has the highest sales for a single game?"],
+            ["CATEGORIZATION", ["Genre", "Global_Sales"], "Which genres have games with global sales greater than 50 million?"],
+            ["CATEGORIZATION", ["Platform", "Global_Sales"], "Which platforms have at least 10 games with global sales exceeding 20 million?"],
+            ["OUTLIER", ["Global_Sales"], "Identify video games with unusually high or low global sales compared to the average."]
+        ]
+    }
+},
+                "data_type": "object",
+                    "count": 1000,
+                    "unique": 5,
+                    "top": "group C",
+                    "freq": 319
+                },
+                "Parental Level of Education": {
+                    "data_type": "object",
+                    "count": 1000,
+                    "unique": 6,
+                    "top": "some college",
+                    "freq": 226
+                },
+                "Lunch": {
+                    "data_type": "object",
+                    "count": 1000,
+                    "unique": 2,
+                    "top": "standard",
+                    "freq": 645
+                },
+                "Test Preparation Course": {
+                    "data_type": "object",
+                    "count": 1000,
+                    "unique": 2,
+                    "top": "none",
+                    "freq": 642
+                },
+                "Math Score": {
+                    "data_type": "int64",
+                    "count": 1000,
+                    "mean": 66.09,
+                    "std": 15.16,
+                    "min": 0.0,
+                    "25%": 57.0,
+                    "50%": 66.0,
+                    "75%": 77.0,
+                    "max": 100.0
+                },
+                "Reading Score": {
+                    "data_type": "int64",
+                    "count": 1000,
+                    "mean": 69.17,
+                    "std": 14.60,
+                    "min": 17.0,
+                    "25%": 59.0,
+                    "50%": 70.0,
+                    "75%": 79.0,
+                    "max": 100.0
+                },
+                "Writing Score": {
+                    "data_type": "int64",
+                    "count": 1000,
+                    "mean": 68.05,
+                    "std": 15.20,
+                    "min": 10.0,
+                    "25%": 57.75,
+                    "50%": 69.0,
+                    "75%": 79.0,
+                    "max": 100.0
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "gender": "female",
+                    "race/ethnicity": "group C",
+                    "parental level of education": "associate's degree",
+                    "math score": 91,
+                    "reading score": 86,
+                    "writing score": 84
+                },
+                {
+                    "gender": "female",
+                    "race/ethnicity": "group B",
+                    "parental level of education": "some college",
+                    "math score": 53,
+                    "reading score": 66,
+                    "writing score": 73
+                },
+                {
+                    "gender": "male",
+                    "race/ethnicity": "group D",
+                    "parental level of education": "high school",
+                    "math score": 60,
+                    "reading score": 70,
+                    "writing score": 64
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["gender", "math score"], "What is the average math score for female students?"],
+            ["PROPORTION", ["gender", "test preparation course"], "What proportion of male students completed the test preparation course?"],
+            ["PROPORTION", ["race/ethnicity", "lunch"], "What proportion of students from group C have free/reduced lunch?"],
+            ["DIFFERENCE", ["math score", "gender"], "What is the difference in average math scores between male and female students?"],
+            ["DIFFERENCE", ["math score", "reading score"], "What is the difference between average math scores and reading scores?"],
+            ["DISTRIBUTION", ["math score"], "What is the distribution of math scores among all students?"],
+            ["DISTRIBUTION", ["parental level of education"], "What is the distribution of students based on their parental education level?"],
+            ["TREND", ["parental level of education", "math score"], "What is the trend of math scores with different parental education levels?"],
+            ["RANK", ["math score", "gender"], "Rank the top 5 highest math scores among male and female students."],
+            ["RANK", ["race/ethnicity", "math score"], "Which ethnic group has the highest average math score?"],
+            ["AGGREGATION", ["math score"], "What is the total, average, and median math score across all students?"],
+            ["ASSOCIATION", ["lunch", "math score"], "Is there a relationship between the type of lunch and math scores?"],
+            ["ASSOCIATION", ["test preparation course", "math score"], "Is there a relationship between completing the test preparation course and math scores?"],
+            ["EXTREME", ["math score"], "Which student has the highest math score?"],
+            ["CATEGORIZATION", ["gender", "math score"], "Which female students have math scores greater than 80?"],
+            ["CATEGORIZATION", ["test preparation course", "math score"], "Which students completed the test preparation course and have a math score below 60?"],
+            ["OUTLIER", ["math score"], "Identify students with unusually high or low math scores compared to the average."]
+        ]
+    }
+},
+{
+    "HealthcareDataset": {
+        "dataset_representation": {
+            "SQL_Table_Creation": {
+                "command": "CREATE TABLE HealthcareDataset (Gender VARCHAR(10), Age FLOAT, Hypertension INT, Heart_Disease INT, Avg_Glucose_Level FLOAT, BMI FLOAT, Stroke INT)"
+            },
+            "Column_Statistics": {
+                "Gender": {
+                    "data_type": "object",
+                    "count": 5110,
+                    "unique": 3,
+                    "top": "Female",
+                    "freq": 2994
+                },
+                "Age": {
+                    "data_type": "float64",
+                    "count": 5110,
+                    "mean": 43.23,
+                    "std": 22.61,
+                    "min": 0.08,
+                    "25%": 25.0,
+                    "50%": 45.0,
+                    "75%": 61.0,
+                    "max": 82.0
+                },
+                "Hypertension": {
+                    "data_type": "int64",
+                    "count": 5110,
+                    "mean": 0.10,
+                    "std": 0.30,
+                    "min": 0.0,
+                    "25%": 0.0,
+                    "50%": 0.0,
+                    "75%": 0.0,
+                    "max": 1.0
+                },
+                "Heart Disease": {
+                    "data_type": "int64",
+                    "count": 5110,
+                    "mean": 0.05,
+                    "std": 0.23,
+                    "min": 0.0,
+                    "25%": 0.0,
+                    "50%": 0.0,
+                    "75%": 0.0,
+                    "max": 1.0
+                },
+                "Average Glucose Level": {
+                    "data_type": "float64",
+                    "count": 5110,
+                    "mean": 106.15,
+                    "std": 45.28,
+                    "min": 55.12,
+                    "25%": 77.25,
+                    "50%": 91.88,
+                    "75%": 114.09,
+                    "max": 271.74
+                },
+                "BMI": {
+                    "data_type": "float64",
+                    "count": 4909,
+                    "mean": 28.89,
+                    "std": 7.85,
+                    "min": 10.3,
+                    "25%": 23.5,
+                    "50%": 28.1,
+                    "75%": 33.1,
+                    "max": 97.6
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "gender": "Male",
+                    "age": 31.0,
+                    "hypertension": 0,
+                    "heart_disease": 0,
+                    "avg_glucose_level": 64.85,
+                    "bmi": 23.0
+                },
+                {
+                    "gender": "Male",
+                    "age": 40.0,
+                    "hypertension": 0,
+                    "heart_disease": 0,
+                    "avg_glucose_level": 65.29,
+                    "bmi": 28.3
+                },
+                {
+                    "gender": "Female",
+                    "age": 8.0,
+                    "hypertension": 0,
+                    "heart_disease": 0,
+                    "avg_glucose_level": 74.42,
+                    "bmi": 22.5
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["age", "stroke"], "What is the average age of stroke patients?"],
+            ["PROPORTION", ["gender", "hypertension"], "What proportion of male patients have hypertension?"],
+            ["DIFFERENCE", ["avg_glucose_level", "stroke"], "What is the difference in average glucose levels between stroke and non-stroke patients?"],
+            ["DISTRIBUTION", ["age"], "What is the distribution of ages among stroke patients?"],
+            ["TREND", ["age", "stroke"], "Is there a trend of increasing stroke risk with age?"],
+            ["RANK", ["bmi", "age"], "Rank the top 5 patients with the highest BMI and their ages."],
+            ["AGGREGATION", ["bmi"], "What is the total, average, and median BMI across all patients?"],
+            ["ASSOCIATION", ["hypertension", "stroke"], "Is there a relationship between hypertension and stroke occurrence?"],
+            ["ASSOCIATION", ["heart_disease", "stroke"], "Is there a correlation between heart disease and stroke?"],
+            ["EXTREME", ["bmi"], "Which patient has the highest BMI?"],
+            ["CATEGORIZATION", ["gender", "stroke"], "Which female patients experienced a stroke?"],
+            ["CATEGORIZATION", ["heart_disease", "stroke"], "Which patients with heart disease experienced a stroke?"],
+            ["OUTLIER", ["avg_glucose_level"], "Identify patients with unusually high or low glucose levels compared to the average."]
+        ]
+    }
+},
+{
+    "Pokemon": {
+        "dataset_representation": {
+            "SQL_Table_Creation": {
+                "command": "CREATE TABLE Pokemon (ID INT, Name VARCHAR(255), Type1 VARCHAR(255), Type2 VARCHAR(255), Total INT, HP INT, Attack INT, Defense INT, Sp_Atk INT, Sp_Def INT, Speed INT, Generation INT, Legendary BOOLEAN)"
+            },
+            "Column_Statistics": {
+                "ID": {
+                    "data_type": "int64",
+                    "count": 800,
+                    "unique": 721,
+                    "top": 479,
+                    "freq": 6
+                },
+                "Name": {
+                    "data_type": "object",
+                    "count": 800,
+                    "unique": 800,
+                    "top": "Abomasnow",
+                    "freq": 1
+                },
+                "Type1": {
+                    "data_type": "object",
+                    "count": 800,
+                    "unique": 18,
+                    "top": "Water",
+                    "freq": 112
+                },
+                "Type2": {
+                    "data_type": "object",
+                    "count": 414,
+                    "unique": 18,
+                    "top": "Flying",
+                    "freq": 97
+                },
+                "Total": {
+                    "data_type": "int64",
+                    "count": 800,
+                    "mean": 435.10,
+                    "std": 119.96,
+                    "min": 180,
+                    "25%": 330.0,
+                    "50%": 450.0,
+                    "75%": 515.0,
+                    "max": 780
+                },
+                "HP": {
+                    "data_type": "int64",
+                    "count": 800,
+                    "mean": 69.26,
+                    "std": 25.53,
+                    "min": 1,
+                    "25%": 50.0,
+                    "50%": 65.0,
+                    "75%": 80.0,
+                    "max": 255
+                },
+                "Attack": {
+                    "data_type": "int64",
+                    "count": 800,
+                    "mean": 79.00,
+                    "std": 32.46,
+                    "min": 5,
+                    "25%": 55.0,
+                    "50%": 75.0,
+                    "75%": 100.0,
+                    "max": 190
+                },
+                "Defense": {
+                    "data_type": "int64",
+                    "count": 800,
+                    "mean": 73.84,
+                    "std": 31.18,
+                    "min": 5,
+                    "25%": 50.0,
+                    "50%": 70.0,
+                    "75%": 90.0,
+                    "max": 230
+                },
+                "Sp_Atk": {
+                    "data_type": "int64",
+                    "count": 800,
+                    "mean": 72.82,
+                    "std": 32.72,
+                    "min": 10,
+                    "25%": 49.75,
+                    "50%": 65.0,
+                    "75%": 95.0,
+                    "max": 194
+                },
+                "Sp_Def": {
+                    "data_type": "int64",
+                    "count": 800,
+                    "mean": 71.90,
+                    "std": 27.83,
+                    "min": 20,
+                    "25%": 50.0,
+                    "50%": 70.0,
+                    "75%": 90.0,
+                    "max": 230
+                },
+                "Speed": {
+                    "data_type": "int64",
+                    "count": 800,
+                    "mean": 68.28,
+                    "std": 29.06,
+                    "min": 5,
+                    "25%": 45.0,
+                    "50%": 65.0,
+                    "75%": 90.0,
+                    "max": 180
+                },
+                "Generation": {
+                    "data_type": "int64",
+                    "count": 800,
+                    "unique": 6,
+                    "top": 1,
+                    "freq": 166
+                },
+                "Legendary": {
+                    "data_type": "bool",
+                    "count": 800,
+                    "unique": 2,
+                    "top": false,
+                    "freq": 735
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "Name": "Altaria",
+                    "Type 1": "Dragon",
+                    "Type 2": "Flying",
+                    "Total": 490,
+                    "HP": 75,
+                    "Attack": 70,
+                    "Defense": 90
+                },
+                {
+                    "Name": "Duosion",
+                    "Type 1": "Psychic",
+                    "Type 2": null,
+                    "Total": 370,
+                    "HP": 65,
+                    "Attack": 40,
+                    "Defense": 50
+                },
+                {
+                    "Name": "Talonflame",
+                    "Type 1": "Fire",
+                    "Type 2": "Flying",
+                    "Total": 499,
+                    "HP": 78,
+                    "Attack": 81,
+                    "Defense": 71
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["Name", "Legendary"], "Which Pokémon are classified as legendary?"],
+            ["PROPORTION", ["Type 1"], "What proportion of Pokémon belong to each primary type?"],
+            ["PROPORTION", ["Generation"], "What proportion of Pokémon belong to each generation?"],
+            ["DIFFERENCE", ["Total", "HP"], "What is the difference between the highest and lowest total base stats for Pokémon?"],
+            ["DISTRIBUTION", ["Attack"], "What is the overall distribution of Attack stats for all Pokémon?"],
+            ["DISTRIBUTION", ["Speed"], "What is the distribution of Speed stats across all Pokémon?"],
+            ["TREND", ["Generation", "Total"], "What is the trend in total base stats across different Pokémon generations?"],
+            ["RANK", ["Name", "Total"], "Rank the top 5 Pokémon with the highest total base stats."],
+            ["RANK", ["Type 1", "HP"], "Which type of Pokémon has the highest average HP?"],
+            ["AGGREGATION", ["Attack"], "What is the average, sum, and count of Attack stats across all Pokémon?"],
+            ["AGGREGATION", ["HP"], "What is the total HP of all Pokémon in the dataset?"],
+            ["ASSOCIATION", ["Attack", "Defense"], "What is the correlation between Attack and Defense stats for Pokémon?"],
+            ["ASSOCIATION", ["Speed", "Total"], "Is there any relationship between Speed and total base stats for Pokémon?"],
+            ["EXTREME", ["Name", "HP"], "Which Pokémon has the highest HP?"],
+            ["EXTREME", ["Name", "Speed"], "Which Pokémon has the highest Speed stat?"],
+            ["CATEGORIZATION", ["Type 1", "Legendary"], "Which Pokémon types have the highest concentration of legendary Pokémon?"],
+            ["OUTLIER", ["Total"], "Identify Pokémon with exceptionally high total base stats compared to the average."],
+            ["OUTLIER", ["Speed"], "Which Pokémon have exceptionally high or low Speed stats compared to the overall dataset?"]
+        ]
+    }
+},
+{
+    "Mobile_Data": {
+        "dataset_representation": {
+            "SQL_Table_Creation": {
+                "command": "CREATE TABLE Mobile_Data (battery_power INT, blue BOOLEAN, clock_speed FLOAT, dual_sim BOOLEAN, fc INT, four_g BOOLEAN, int_memory INT, m_dep FLOAT, mobile_wt INT, n_cores INT, pc INT, px_height INT, px_width INT, ram INT, sc_h INT, sc_w INT, talk_time INT, three_g BOOLEAN, touch_screen BOOLEAN, wifi BOOLEAN, price_range INT)"
+            },
+            "Column_Statistics": {
+                "battery_power": {
+                    "data_type": "int64",
+                    "count": 2000,
+                    "mean": 1238.52,
+                    "std": 439.42,
+                    "min": 501,
+                    "25%": 851.75,
+                    "50%": 1226.0,
+                    "75%": 1615.25,
+                    "max": 1998
+                },
+                "blue": {
+                    "data_type": "bool",
+                    "count": 2000,
+                    "unique": 2,
+                    "top": 0,
+                    "freq": 1010
+                },
+                "clock_speed": {
+                    "data_type": "float64",
+                    "count": 2000,
+                    "mean": 1.52,
+                    "std": 0.82,
+                    "min": 0.5,
+                    "25%": 0.7,
+                    "50%": 1.5,
+                    "75%": 2.2,
+                    "max": 3.0
+                },
+                "dual_sim": {
+                    "data_type": "bool",
+                    "count": 2000,
+                    "unique": 2,
+                    "top": 1,
+                    "freq": 1019
+                },
+                "fc": {
+                    "data_type": "int64",
+                    "count": 2000,
+                    "mean": 4.31,
+                    "std": 4.34,
+                    "min": 0,
+                    "25%": 1.0,
+                    "50%": 3.0,
+                    "75%": 7.0,
+                    "max": 19
+                },
+                "four_g": {
+                    "data_type": "bool",
+                    "count": 2000,
+                    "unique": 2,
+                    "top": 1,
+                    "freq": 1043
+                },
+                "int_memory": {
+                    "data_type": "int64",
+                    "count": 2000,
+                    "mean": 32.05,
+                    "std": 18.15,
+                    "min": 2,
+                    "25%": 16.0,
+                    "50%": 32.0,
+                    "75%": 48.0,
+                    "max": 64
+                },
+                "m_dep": {
+                    "data_type": "float64",
+                    "count": 2000,
+                    "mean": 0.50,
+                    "std": 0.29,
+                    "min": 0.1,
+                    "25%": 0.2,
+                    "50%": 0.5,
+                    "75%": 0.8,
+                    "max": 1.0
+                },
+                "mobile_wt": {
+                    "data_type": "int64",
+                    "count": 2000,
+                    "mean": 140.25,
+                    "std": 35.40,
+                    "min": 80,
+                    "25%": 109.0,
+                    "50%": 141.0,
+                    "75%": 170.0,
+                    "max": 200
+                },
+                "n_cores": {
+                    "data_type": "int64",
+                    "count": 2000,
+                    "mean": 4.52,
+                    "std": 2.29,
+                    "min": 1,
+                    "25%": 3.0,
+                    "50%": 4.0,
+                    "75%": 7.0,
+                    "max": 8
+                },
+                "price_range": {
+                    "data_type": "int64",
+                    "count": 2000,
+                    "unique": 4,
+                    "top": 0,
+                    "freq": 500
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "battery_power": 869,
+                    "blue": 0,
+                    "clock_speed": 1.3,
+                    "dual_sim": 1,
+                    "fc": 3,
+                    "four_g": 0,
+                    "price_range": 3
+                },
+                {
+                    "battery_power": 685,
+                    "blue": 0,
+                    "clock_speed": 0.5,
+                    "dual_sim": 1,
+                    "fc": 8,
+                    "four_g": 1,
+                    "price_range": 3
+                },
+                {
+                    "battery_power": 1188,
+                    "blue": 1,
+                    "clock_speed": 1.4,
+                    "dual_sim": 1,
+                    "fc": 0,
+                    "four_g": 1,
+                    "price_range": 3
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["battery_power", "price_range"], "Which battery power level is typical for low price range phones?"],
+            ["PROPORTION", ["price_range"], "What proportion of phones belong to each price range?"],
+            ["PROPORTION", ["four_g"], "What proportion of phones support 4G?"],
+            ["DIFFERENCE", ["clock_speed", "price_range"], "What is the difference in average clock speed between the highest and lowest price ranges?"],
+            ["DISTRIBUTION", ["fc"], "What is the overall distribution of front camera megapixels (fc)?"],
+            ["DISTRIBUTION", ["n_cores"], "What is the distribution of processor cores across all phones?"],
+            ["TREND", ["battery_power", "price_range"], "What is the trend in battery power across the different price ranges?"],
+            ["RANK", ["battery_power", "price_range"], "Rank the top 5 phones with the highest battery power in the highest price range."],
+            ["RANK", ["ram", "price_range"], "Rank the top phones with the most RAM in the highest price range."],
+            ["AGGREGATION", ["fc"], "What is the average, sum, and count of front camera megapixels across all phones?"],
+            ["ASSOCIATION", ["battery_power", "price_range"], "What is the relationship between battery power and price range?"],
+            ["EXTREME", ["clock_speed", "price_range"], "Which phones have the highest clock speed in the highest price range?"],
+            ["OUTLIER", ["battery_power"], "Identify phones with exceptionally high battery power compared to the overall dataset."]
+        ]
+    }
+},
+{
+    "Netflix_Data": {
+        "dataset_representation": {
+            "SQL_Table_Creation": {
+                "command": "CREATE TABLE Netflix_Data (show_id VARCHAR(10), type VARCHAR(20), title VARCHAR(255), director VARCHAR(255), cast TEXT, country VARCHAR(255), date_added DATE, release_year INT, rating VARCHAR(20), duration VARCHAR(50), listed_in TEXT, description TEXT)"
+            },
+            "Column_Statistics": {
+                "show_id": {
+                    "data_type": "object",
+                    "count": 8807,
+                    "unique": 8807,
+                    "top": "s1",
+                    "freq": 1
+                },
+                "type": {
+                    "data_type": "object",
+                    "count": 8807,
+                    "unique": 2,
+                    "top": "Movie",
+                    "freq": 6131
+                },
+                "title": {
+                    "data_type": "object",
+                    "count": 8807,
+                    "unique": 8807,
+                    "top": "#Alive",
+                    "freq": 1
+                },
+                "director": {
+                    "data_type": "object",
+                    "count": 6173,
+                    "unique": 4528,
+                    "top": "Rajiv Chilaka",
+                    "freq": 19
+                },
+                "country": {
+                    "data_type": "object",
+                    "count": 7976,
+                    "unique": 748,
+                    "top": "United States",
+                    "freq": 2818
+                },
+                "release_year": {
+                    "data_type": "int64",
+                    "count": 8807,
+                    "mean": 2014.18,
+                    "std": 8.82,
+                    "min": 1925,
+                    "25%": 2013.0,
+                    "50%": 2017.0,
+                    "75%": 2019.0,
+                    "max": 2021
+                },
+                "rating": {
+                    "data_type": "object",
+                    "count": 8803,
+                    "unique": 17,
+                    "top": "TV-MA",
+                    "freq": 3207
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "title": "Oh My God",
+                    "type": "Movie",
+                    "country": "India",
+                    "release_year": 2012,
+                    "rating": "TV-PG"
+                },
+                {
+                    "title": "White Gold",
+                    "type": "TV Show",
+                    "country": "United Kingdom",
+                    "release_year": 2019,
+                    "rating": "TV-MA"
+                },
+                {
+                    "title": "Money Heist: From Tokyo to Berlin",
+                    "type": "TV Show",
+                    "country": null,
+                    "release_year": 2021,
+                    "rating": "TV-MA"
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["type", "title"], "Which TV Shows have the highest popularity?"],
+            ["PROPORTION", ["type"], "What proportion of Netflix content is TV Shows versus Movies?"],
+            ["PROPORTION", ["country"], "What proportion of Netflix content is produced in the United States compared to other countries?"],
+            ["DIFFERENCE", ["release_year", "rating"], "What is the difference in the release years of TV-MA and PG-rated content?"],
+            ["DISTRIBUTION", ["rating"], "What is the distribution of content ratings on Netflix?"],
+            ["DISTRIBUTION", ["release_year"], "What is the distribution of release years for Netflix content?"],
+            ["TREND", ["release_year", "type"], "What is the trend in the number of TV Shows and Movies produced over time?"],
+            ["RANK", ["release_year", "title"], "Rank the top 5 most recent releases on Netflix."],
+            ["RANK", ["country", "title"], "Which countries have produced the most content on Netflix?"],
+            ["AGGREGATION", ["rating"], "What is the count of content for each rating category on Netflix?"],
+            ["AGGREGATION", ["release_year"], "What is the average and total count of Netflix content by release year?"],
+            ["ASSOCIATION", ["country", "rating"], "What is the relationship between country of production and content rating?"],
+            ["EXTREME", ["release_year"], "Which is the oldest show or movie available on Netflix?"],
+            ["EXTREME", ["release_year"], "Which is the most recent show or movie available on Netflix?"],
+            ["CATEGORIZATION", ["rating", "type"], "Which rating category has the most movies and TV shows?"],
+            ["OUTLIER", ["country"], "Identify countries that have produced an exceptionally high or low number of Netflix shows and movies."]
+        ]
+    }
+},
+{
+    "Student_Data": {
+        "dataset_representation": {
+            "SQL_Table_Creation": {
+                "command": "CREATE TABLE Student_Data (school VARCHAR(10), sex VARCHAR(1), age INT, address VARCHAR(1), famsize VARCHAR(3), Pstatus VARCHAR(1), Medu INT, Fedu INT, Mjob VARCHAR(20), Fjob VARCHAR(20), reason VARCHAR(20), guardian VARCHAR(10), traveltime INT, studytime INT, failures INT, schoolsup VARCHAR(3), famsup VARCHAR(3), paid VARCHAR(3), activities VARCHAR(3), nursery VARCHAR(3), higher VARCHAR(3), internet VARCHAR(3), romantic VARCHAR(3), famrel INT, freetime INT, goout INT, Dalc INT, Walc INT, health INT, absences INT, G1 INT, G2 INT, G3 INT)"
+            },
+            "Column_Statistics": {
+                "age": {
+                    "data_type": "int64",
+                    "count": 649,
+                    "mean": 16.74,
+                    "std": 1.22,
+                    "min": 15,
+                    "25%": 16.0,
+                    "50%": 17.0,
+                    "75%": 18.0,
+                    "max": 22
+                },
+                "sex": {
+                    "data_type": "object",
+                    "count": 649,
+                    "unique": 2,
+                    "top": "F",
+                    "freq": 383
+                },
+                "address": {
+                    "data_type": "object",
+                    "count": 649,
+                    "unique": 2,
+                    "top": "U",
+                    "freq": 452
+                },
+                "G3": {
+                    "data_type": "int64",
+                    "count": 649,
+                    "mean": 11.91,
+                    "std": 3.23,
+                    "min": 0,
+                    "25%": 10.0,
+                    "50%": 12.0,
+                    "75%": 14.0,
+                    "max": 19
+                },
+                "absences": {
+                    "data_type": "int64",
+                    "count": 649,
+                    "mean": 3.66,
+                    "std": 4.64,
+                    "min": 0,
+                    "25%": 0.0,
+                    "50%": 2.0,
+                    "75%": 6.0,
+                    "max": 32
+                }
+            },
+            "Anonymized_Data_Samples": [
+                {
+                    "school": "GP",
+                    "sex": "M",
+                    "age": 19,
+                    "address": "R",
+                    "G3": 10
+                },
+                {
+                    "school": "GP",
+                    "sex": "F",
+                    "age": 15,
+                    "address": "U",
+                    "G3": 9
+                },
+                {
+                    "school": "GP",
+                    "sex": "F",
+                    "age": 16,
+                    "address": "U",
+                    "G3": 10
+                }
+            ]
+        },
+        "facts": [
+            ["VALUE", ["G3", "sex"], "What is the average final grade for male and female students?"],
+            ["PROPORTION", ["sex"], "What proportion of the students are female versus male?"],
+            ["PROPORTION", ["address"], "What proportion of students live in urban areas compared to rural areas?"],
+            ["DIFFERENCE", ["G3", "address"], "What is the difference in average final grades between urban and rural students?"],
+            ["DISTRIBUTION", ["age"], "What is the overall distribution of students' ages?"],
+            ["DISTRIBUTION", ["G3"], "What is the distribution of final grades among students?"],
+            ["TREND", ["G1", "G2", "G3"], "What is the trend in grades from the first to final period?"],
+            ["RANK", ["G3", "sex"], "Rank the top 5 highest scoring female and male students based on final grades."],
+            ["RANK", ["absences", "G3"], "Which students have the highest number of absences and how does it relate to their final grades?"],
+            ["AGGREGATION", ["age"], "What is the average age of students?"],
+            ["AGGREGATION", ["G3"], "What is the average, sum, and count of final grades among all students?"],
+            ["ASSOCIATION", ["famrel", "G3"], "What is the relationship between family relationship quality and final grades?"],
+            ["EXTREME", ["G3"], "Which student has the highest final grade?"],
+            ["EXTREME", ["absences"], "Which student has the highest number of absences?"],
+            ["CATEGORIZATION", ["studytime", "G3"], "How do different levels of weekly study time affect final grades?"],
+            ["OUTLIER", ["G3"], "Identify students with exceptionally high or low final grades compared to the average."]
+        ]
+    }
+}]
+
+
+
